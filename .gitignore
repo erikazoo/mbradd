@@ -1,0 +1,9 @@
+# Environment
+.venv/
+
+# Raw Data, redownloaded from CMS
+data/ 
+
+# Python 
+__pycache__/
+*.pyc
