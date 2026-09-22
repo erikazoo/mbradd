@@ -21,7 +21,8 @@ def _():
     url = "https://data.cms.gov/sites/default/files/2026-05/b5ebab5a-f490-418a-9bce-4b9f31419356/PHY_R26_P05_V10_D24_Prov_Svc.csv" # pulled from data.cms.gov/data.json 
     out = Path("data/raw/mpos24.csv")
     out.parent.mkdir(parents=True, exist_ok=True)
-    urllib.request.urlretrieve(url, out)
+    if not out.exists():
+        urllib.request.urlretrieve(url, out)
     return
 
 
@@ -71,6 +72,11 @@ def _(model_input, mpos24, usecols):
 
     _(model_input, mpos24)
     mpos24[model_input].describe(percentiles=[0.5, 0.9, 0.99]).round(1) # check skew
+    return
+
+
+@app.cell
+def _():
     return
 
 
