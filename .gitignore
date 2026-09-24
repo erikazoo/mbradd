@@ -1,0 +1,8 @@
+# Data (too large for GitHub)
+*.csv
+*.parquet
+data/
+
+# Jupyter / Python temp files
+.ipynb_checkpoints/
+__pycache__/
