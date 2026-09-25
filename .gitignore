@@ -1,0 +1,16 @@
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Raw & cached Medicare data — too large for GitHub, document download steps in data/README.md instead
+*.parquet
+Medicare_Physician_Other_Practitioners_by_Provider_and_Service_2024.csv
+
+# OS junk
+.DS_Store
+Thumbs.db
