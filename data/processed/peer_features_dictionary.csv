@@ -1,0 +1,25 @@
+column,dtype,description
+row_id,int64,Row key: position after cleaning; same as row_id in the team's ml_table (NPI x HCPCS x place of service)
+peer_level,int8,"Peer group used: 1 = fine (Type x POS x HCPCS x segment), 2 = coarse fallback (Type x POS x segment), 0 = unscored"
+group_n,int32,Rows in the row's fine peer group
+group_n_coarse,int32,Rows in the row's coarse peer group
+Tot_Srvcs_z,float32,z-score of log1p(Tot_Srvcs) within the peer group used
+Tot_Srvcs_rz,float32,Robust z-score (median / IQR) of log1p(Tot_Srvcs) within the peer group used
+Tot_Srvcs_pct,float32,Percentile rank (0-1) of Tot_Srvcs within the peer group used
+Avg_Sbmtd_Chrg_z,float32,z-score of log1p(Avg_Sbmtd_Chrg) within the peer group used
+Avg_Sbmtd_Chrg_rz,float32,Robust z-score (median / IQR) of log1p(Avg_Sbmtd_Chrg) within the peer group used
+Avg_Sbmtd_Chrg_pct,float32,Percentile rank (0-1) of Avg_Sbmtd_Chrg within the peer group used
+Avg_Mdcr_Stdzd_Amt_z,float32,z-score of log1p(Avg_Mdcr_Stdzd_Amt) within the peer group used
+Avg_Mdcr_Stdzd_Amt_rz,float32,Robust z-score (median / IQR) of log1p(Avg_Mdcr_Stdzd_Amt) within the peer group used
+Avg_Mdcr_Stdzd_Amt_pct,float32,Percentile rank (0-1) of Avg_Mdcr_Stdzd_Amt within the peer group used
+srvcs_per_bene_z,float32,z-score of log1p(srvcs_per_bene) within the peer group used
+srvcs_per_bene_rz,float32,Robust z-score (median / IQR) of log1p(srvcs_per_bene) within the peer group used
+srvcs_per_bene_pct,float32,Percentile rank (0-1) of srvcs_per_bene within the peer group used
+chrg_to_alowd_z,float32,z-score of log1p(chrg_to_alowd) within the peer group used
+chrg_to_alowd_rz,float32,Robust z-score (median / IQR) of log1p(chrg_to_alowd) within the peer group used
+chrg_to_alowd_pct,float32,Percentile rank (0-1) of chrg_to_alowd within the peer group used
+baseline_raw,float32,Largest |robust z| across the five metrics (log1p scale)
+baseline_score,float32,"0-100 percentile rank of baseline_raw across scored rows (statistical baseline, NOT a fraud score)"
+flag_top1,bool,True if baseline_score is in the top 1%
+flag_top5,bool,True if baseline_score is in the top 5%
+flag_top10,bool,True if baseline_score is in the top 10%
