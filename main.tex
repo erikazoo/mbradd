@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{parskip}
+\usepackage{float}
+\usepackage{graphicx}
+\geometry{margin=0.5in}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titlespacing{\section}{0pt}{0.5em}{0.25em}
+\begin{document}
+\begin{center}
+    \Large \textbf{DATA4991 Fall 2026 Project Proposal} \\
+\end{center}
+\noindent
+\textbf{Project Title:} 
+Medicare Billing Risk and Anomaly Detection Dashboard \\
+\noindent
+\textbf{Team Members:} \\
+- Diana Shadibaeva --- dtshadib@mtu.edu (Project Lead/Power BI)\\
+- Alisa Teige --- ateige@mtu.edu (Power BI)\\
+- Tyson Watson --- tysonw@mtu.edu (Model training)\\
+- Eli Worthing --- ekworthi@mtu.edu (Data Preprocessing)  \\
+- Erica Zhu --- ericaz@mtu.edu (Data Preprocessing)
+% Sections
+\section{Introduction \& Motivation}
+This project is a decision-support project that combines official Medicare billing data, machine learning, and Power BI. The project will analyze billing patterns in the Centers for Medicare and Medicaid Services (CMS) Medicare Physician and Other Practitioners - by Provider and Service public dataset. 
+
+The goal is to demonstrate an end-to-end analytics workflow: source validation, data preparation, domain-aware feature engineering, machine learning, explainability, BI design, and responsible interpretation. 
+
+
+
+\section{Problem Statement}
+
+Insurance and public health programs process large volumes of billing activity. Analysts cannot manually examine every provider-service pattern with equal attention. A useful analytics system should therefore help prioritize where limited review capacity should be focused while preserving human judgment. Our stakeholders would be data analysts working on Insurance analysis.
+
+\section{Objectives Timeline}
+\begin{itemize}[leftmargin=*]
+\item[1)] Download the dataset, organize GitHub repository and Google Drive, Preprocess data due: 10/02: 11.00 PM
+\item[2)] Mid-Semester Code and Check-in (in-class presentation), due: 10/16 02.00-02.50 PM
+\item[3)] Model Training, Tuning, and Optimization due: 11/02: 11.00 PM
+\item[4)] Checkpoint Code and Report, start working on the Power BI dashboard due: 11/18: 11.00 PM
+\item[5)] Finished Power BI dashboard, final Code and Report due: 12/14: 11.00 PM
+\item[6)] Final Project Presentation and demo due: 12/09 and 12/11: 02.00 PM- 2.50 PM 
+\item[7)] Project Portfolio (Husky Folio) due: 12/14: 11.00 PM
+\end{itemize}
+
+\section{Scope of Work}
+
+\textbf{In-Scope:} This project will analyze the 2024 CMS Medicare Physician \& Other Practitioners public dataset, including data cleaning, validation, preparation, and development of provider-service peer groups and behavioral features. An unsupervised Isolation Forest model will be used for anomaly detection and compared with percentile- and z-score-based baselines. The analysis will generate a 0--100 Billing Anomaly Risk Score, examine feature contributions and ranking stability under different model assumptions, contamination levels, and feature sets, and present the results through an interactive Power BI dashboard for provider comparison, anomaly ranking, drill-down analysis, and investigation prioritization. Model limitations and responsible interpretation of anomaly scores will also be documented.
+
+\textbf{Out-of-Scope:} The project will not confirm or prove Medicare fraud, waste, or abuse, train a supervised fraud-detection model, or use private, proprietary, or patient-level clinical data beyond the selected CMS public dataset. It will also not determine whether individual billing is clinically appropriate or medically necessary, recommend enforcement actions, or make final investigative decisions based on anomaly scores.
+
+\section{Methodology}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Data/Dataset:} The project will use the "CMS Medicare Physician \& Other Practitioners - by Provider and Service" public dataset as the primary data source(28 features, 9.7M rows). This dataset contains organized medicare billing information. Important variables include provider identifiers, procedure information, amount of services, submitted charges, medicare payments, and other characteristics. The data will be cleaned and prepared using Python. Missing values will be removed, relevant provider and service variables will be selected, outliers will be handled, transformations might help with data analyzing.
+    \\Feature engineering will focus on service intensity, submitted charge to medicare payment ratios, provider concentration, difference in provider billing behavior and comparable providers. Peer relative statistics, such as z scores and percentile based measures, will be used to establish a statistical baseline
+    \item \textbf{Methods/Models:} Because the CMS dataset does not contain a verified fraud target variable, the project will use unsupervised anomaly detection rather than supervised fraud classification. This avoids arbitrary rules.
+    \\Baseline $\rightarrow$  z scores, percentile anomaly flags
+    \\ Isolation forest to generate an anomaly score and rank observations
+    \item \textbf{Tools/Technologies:} Python, pandas, NumPy, scikit-learn, Jupyter Notebook, Power BI, Github with README
+    \item \textbf{Workflow:} CMS Public Dataset $\rightarrow$ Data Validation and Cleaning $\rightarrow$ Feature Engineering $\rightarrow$ Data Analysis $\rightarrow$ Statistical Baseline $\rightarrow$ Isolation Forest $\rightarrow$ Model Evaluation/Stability Testing $\rightarrow$ Anomaly Scores + Feature Explanations $\rightarrow$ Power BI dashboard $\rightarrow$ Analyst Review
+    \item \textbf{Evaluation Methods:} 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Screenshot 2026-09-16 141356.png}
+    \caption{Evaluation Methods Chart}
+    \label{fig:placeholder}
+\end{figure}
+\end{itemize}
+
+\section{Feasibility Study}
+\textbf{Technical Feasibility:} The project is feasible because it relies on the publicly accessible CMS dataset. The proposed analysis uses established Python data-science libraries and does not require developing an ML algorithm from scratch. If the size of the CMS dataset is to large, we can focus only on relevant columns, filter unnecessary records, aggregate data where appropriate, etc.
+\textbf{Time Feasibility:} Completing the project is feasible within the semester. With the workflow: CMS data $\rightarrow$ preprocessing $\rightarrow$ statistical baseline $\rightarrow$ Isolation Forest $\rightarrow$ evaluation $\rightarrow$ Power BI dashboard. The planned deliverables are consistent and clear.
+
+\section{Tools \& Resources}
+\subsection*{Dataset}
+This project shall use the \textit{Medicare Physician \& Other Practitioners - by Provider and Service} dataset, from the Centers for Medicare and Medicaid Services. It provides billing info, aggregated by provider and service, among other features. The data set is published annually, with current publicly available information spanning 2013-2024.The scope of the project will be limited within the most recent year, adjusting as needed.
+\subsection*{Software/Computing Resources and Version Control}
+The use of interactive Python notebook software such as Jupyter Notebook, Google Colab, or even an alternative Python IDE may depend on (1) its ability to interface with the GitHub repository and (2) sufficient memory allocation. The following Python libraries may be anticipated throughout the process of data cleaning, feature engineering, and model training: pandas, NumPy, scikit-learn, isotree, matplotlib, seaborn. All documentation, reports, notebooks/scripts, README, and instructions will be located in the GitHub repository.
+\subsection*{Power BI}
+Microsoft Power BI (Power Business Intelligence) shall host the dashboard for this project, as it is a robust and interactive software with built-in tools such as Power Query to connect our data and DAX for KPI cards and measures. 
+
+\section{Expected Outcomes}
+The project should be a reproducible pipeline that assesses billing variables and assigns anomaly risk scores to provider/service records, on a scale of 0-100. The fully developed model should
+observe rankings with stability and accuracy, potentially identify and explain overlapping high risk patterns using transparent peer-comparison features, distinguish billing characteristics of the top 1\%, 5\%, and 10\% anomaly risk groups, and provide clear and reproducible explanations for the score for display.
+The data and scoring will be used by a dashboard to create the following: Summary page: initial visualization tools (KPI cards, anomaly risk distribution; top specialties; state map; filters), Ranked review queue: prioritize records sortable by filters (Top-N/Top-\% selector, specialty, state, HCPCS(procedure code), and place of service slicers), Provider in-depth analysis: Provide reasoning for why a provider was flagged as anomalous. (Risk gauge; peer percentiles; procedure profile; charge/payment comparisons), Peer Analysis: Comparing services by peer group. (Box/percentile plots or distributions; scatter plots; peer medians; facility vs non facility comparisons), Model \& Data Transparency: Documentation of source, methods, assumptions, and limitations for analysts.
+
+\section{Challenges \& Risk Mitigation}
+\subsection*{Data/Model limitations}
+The data cover only fee-for-service Medicare; per CMS, a provider's full practice (e.g., quality of care, patient acuity) may be incompletely documented, and census data may have privacy-related missingness. Since no fraud ground truth exists, no precision-recall metric is reported; validity is instead assessed via stability, agreement, and sensitivity tests. Correct peer-group feature selection is critical, as poor grouping can make high-volume or specialist providers consistently score as outliers mitigated by the sensitivity analysis. Isolation Forest, while effective for large-scale rare-event detection, can miss local anomalies, is highly sensitive to seed/noise, and is not easily interpretable; this is addressed by averaging scores across multiple seeds and cross-checking against a transparent z-score/percentile baseline.
+\subsection*{Computational limitations}
+The dataset for one year alone is 9.7 million records. Expanding the scope of the project to multiple years, while potentially having robust insights, exposes the project to storage/computation limitations exponentially. This may change depending on tool availability or funding. 
+\subsection*{Interpretation}
+Users of the deliverable may seek to interpret anomaly as fraud. It shall be reiterated through the course of this project and final product(s) that no part of it will suggest a provider is fraudulent. This will be mitigated by design in priority bands that are backed by percentiles, and highlighted in the Power BI Model \& Data Transparency page. 
+\section{Deliverables}
+
+Completed Project Proposal (PDF), 5-page Power BI Dashboard (PBIX) and Scored Analytical Table Exports, Python Notebook/Scripts Used, GitHub Repository, Presentation Pitch and Methodology Report (PPT, PDF)
+
+\section{Ethical Considerations}
+This project uses only public, aggregated CMS data with no patient-level information. Anomaly scores indicate statistical outliers, not confirmed fraud, and will always be presented as candidates for human review rather than conclusions. Because scores are relative to peer groups, poorly defined groups could unfairly flag legitimate providers (e.g., rural or low-volume practices); this will be checked via sensitivity analysis. All scoring logic and limitations will be documented on the dashboard, and no individually identifying "worst offender" claims will be made in any deliverable.
+\section{References}
+Data set: \href{https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service/data}{Click here or go to:}
+https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service/data
+\end{document}
