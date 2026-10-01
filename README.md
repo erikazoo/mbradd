@@ -15,6 +15,7 @@ aware feature engineering, machine learning, explicability, BI design, and respo
 
 **Quick start guide**: TBU  
 **Code Structure Overview**: TBU  
+**Features and Meanings**: See the full [Data Dictionary](data/DATA_DICTIONARY.md).  
 ___
 ### Links and References
 This project will use the following dataset: https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service/data   
