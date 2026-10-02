@@ -2,15 +2,17 @@
 # requires-python = ">=3.14"
 # dependencies = [
 #     "marimo>=0.23.3",
+#     "matplotlib==3.11.2",
 #     "numpy==2.5.3",
 #     "pandas>=3.0.6",
 #     "scikit-learn>=1.9.1",
+#     "seaborn==0.13.2",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.24.2"
+__generated_with = "0.25.0"
 app = marimo.App(auto_download=["ipynb"])
 
 
@@ -61,7 +63,7 @@ def _():
 @app.cell
 def _(path, pd, usecols):
     mpos24 = pd.read_csv(path, usecols=usecols)
-    mpos24.shape # 19 features, 9781673 rows
+    mpos24.shape # 20 features, 9781673 rows
     return (mpos24,)
 
 
