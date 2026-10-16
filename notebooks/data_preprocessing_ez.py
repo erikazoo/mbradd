@@ -2,6 +2,7 @@
 # requires-python = ">=3.14"
 # dependencies = [
 #     "marimo>=0.23.3",
+#     "numpy==2.5.3",
 #     "pandas>=3.0.6",
 #     "scikit-learn>=1.9.1",
 # ]
