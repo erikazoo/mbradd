@@ -7,5 +7,3 @@ data/
 # Python 
 __pycache__/
 *.pyc
-
-__marimo__/
