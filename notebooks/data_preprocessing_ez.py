@@ -92,6 +92,14 @@ def _(mpos24, usecols):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Feature Selection
+    """)
+    return
+
+
 @app.cell
 def _(mpos24, num_cols):
     mpos24[list(num_cols)].corr() # Avg_Mdcr_Alowd_Amt, Avg_Mdcr_Pymt_Amt, Avg_Mdcr_Stdzd_Amt are nigh perfectly correllated, so all three are not valuable inputs to IsoForest. Same goes for Tot_Benes and Tot_Bene_Day_Srvcs. We want to justify this visually, with the transformed variables
@@ -134,9 +142,50 @@ def _(mpos24, np, sns):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Feature Engineering
+    """)
+    return
+
+
 @app.cell
-def _(plt, sns, z):
-    _zr = z.corr()
+def _(mpos24, np):
+    _alowd = mpos24["Avg_Mdcr_Alowd_Amt"].where(mpos24["Avg_Mdcr_Alowd_Amt"] > 0)
+    _chrg = mpos24["Avg_Sbmtd_Chrg"].where(mpos24["Avg_Sbmtd_Chrg"] > 0)
+    feats = mpos24.assign(
+        log_pay=np.log1p(mpos24["Avg_Mdcr_Stdzd_Amt"]),
+        log_benes=np.log1p(mpos24["Tot_Benes"]),
+        log_srvcs_per_bene=np.log(mpos24["Tot_Srvcs"] / mpos24["Tot_Benes"]),
+        log_markup=np.log(_chrg / _alowd),
+    )
+    return (feats,)
+
+
+@app.cell
+def _():
+    # as concluded from above, 
+    final_features = ["log_pay_rz", "log_benes_rz", "log_srvcs_per_bene_rz", "log_markup_rz"]
+    return (final_features,)
+
+
+@app.cell
+def _(feats, final_features, pd):
+    _lvl1 = ["Rndrng_Prvdr_Type", "HCPCS_Cd", "Place_Of_Srvc"]
+    _lvl2 = ["HCPCS_Cd", "Place_Of_Srvc"]
+    _rz = {}
+    for _f in final_features:
+        _c = _f.removesuffix("_rz")
+        _rz[_f] = robust_z(feats, _c, _lvl1, 100).fillna(robust_z(feats, _c, _lvl2, 100))
+    peer_z = pd.DataFrame(_rz)
+    peer_z.isna().mean() # MAD ~ 1.07% missing for every feature, where l_p_r and l_s_p_b_r used to be ~%12 and ~%29 missing a z-score (where the typical spread is exactly 0 because the providers have identical value)
+    return (peer_z,)
+
+
+@app.cell
+def _(peer_z, plt, sns):
+    _zr = peer_z.corr()
     _fig, _ax = plt.subplots(figsize=(6, 5))
     sns.heatmap(_zr, annot=True, fmt=".2f", cmap="vlag", vmin=-1, vmax=1, square=True, ax=_ax)
     _ax.set_title("Final features: Pearson within peer groups")
@@ -148,10 +197,11 @@ def _(plt, sns, z):
     return
 
 
-@app.cell
-def _():
-    # as concluded from above, 
-    final_features = ["log_pay_rz", "log_benes_rz", "log_srvcs_per_bene_rz", "log_markup_rz"]
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Peer Grouping
+    """)
     return
 
 
@@ -177,16 +227,38 @@ def _(feats):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Model Matrix
+    """)
+    return
+
+
 @app.cell
-def _(feats, pd):
-    _lvl1 = ["Rndrng_Prvdr_Type", "HCPCS_Cd", "Place_Of_Srvc"]
-    _lvl2 = ["HCPCS_Cd", "Place_Of_Srvc"]
-    _rz = {}
-    for _c in ["log_pay", "log_benes", "log_srvcs_per_bene", "log_markup"]:
-        _rz[f"{_c}_rz"] = robust_z(feats, _c, _lvl1, 100).fillna(robust_z(feats, _c, _lvl2, 100))
-    z = pd.DataFrame(_rz)
-    z.isna().mean() # MAD ~ 1.07% missing for every feature, where l_p_r and l_s_p_b_r used to be ~%12 and ~%29 missing a z-score (where the typical spread is exactly 0 because the providers have identical value)
-    return (z,)
+def _(peer_z):
+    _ok = peer_z.notna().all(axis=1)
+    Z = peer_z[_ok].clip(lower=0) # one-sided: auditors don't really need to look at billing less than peers, and we don't want to flag low volume/intensity providers - rerun without clip to check sensitivity
+    Z.shape, _ok.mean() # confirms MAD fix worked, 1.07% of rows lacked greater than or equal to 100 peers and are reported as unscored rather than compared against an unreliable baseline
+    return (Z,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Baselines, z-score and percentile, and crosstab comparison
+    """)
+    return
+
+
+@app.cell
+def _(Z, pd):
+    base = pd.DataFrame({"base_score": Z.max(axis=1),
+                         "base_reason": Z.idxmax(axis=1),
+                         "n_over": (Z > 3.5).sum(axis=1)}, index=Z.index) # baseline, explainable benchmark that our models need to beat or agree with
+    base["base_flag"] = base["base_score"] > 3.5 # modified z-score cutoff to identify outliars using median and median absolute deviation - Boris Iglewicz, David C. Hoaglin 1993 Volume 16: How to Detect and Handle Outliers - note to self to add to citations if confirmed with team
+    base["base_flag"].mean(), base.loc[base.base_flag, "base_reason"].value_counts(normalize=True)
+    return (base,)
 
 
 @app.cell
@@ -220,34 +292,12 @@ def _(base, pct_base, pd):
     return
 
 
-@app.cell
-def _(mpos24, np):
-    _alowd = mpos24["Avg_Mdcr_Alowd_Amt"].where(mpos24["Avg_Mdcr_Alowd_Amt"] > 0)
-    feats = mpos24.assign(
-        log_pay=np.log1p(mpos24["Avg_Mdcr_Stdzd_Amt"]),
-        log_benes=np.log1p(mpos24["Tot_Benes"]),
-        log_srvcs_per_bene=np.log(mpos24["Tot_Srvcs"] / mpos24["Tot_Benes"]),
-        log_markup=np.log(mpos24["Avg_Sbmtd_Chrg"] / _alowd),
-    )
-    return (feats,)
-
-
-@app.cell
-def _(z):
-    _ok = z.notna().all(axis=1)
-    Z = z[_ok].clip(lower=0) # one-sided: auditors don't really need to look at billing less than peers, and we don't want to flag low volume/intensity providers - rerun without clip to check sensitivity
-    Z.shape, _ok.mean() # confirms MAD fix worked, 1.07% of rows lacked greater than or equal to 100 peers and are reported as unscored rather than compared against an unreliable baseline
-    return (Z,)
-
-
-@app.cell
-def _(Z, pd):
-    base = pd.DataFrame({"base_score": Z.max(axis=1),
-                         "base_reason": Z.idxmax(axis=1),
-                         "n_over": (Z > 3.5).sum(axis=1)}, index=Z.index) # baseline, explainable benchmark that our models need to beat or agree with
-    base["base_flag"] = base["base_score"] > 3.5 # modified z-score cutoff to identify outliars using median and median absolute deviation - Boris Iglewicz, David C. Hoaglin 1993 Volume 16: How to Detect and Handle Outliers - note to self to add to citations if confirmed with team
-    base["base_flag"].mean(), base.loc[base.base_flag, "base_reason"].value_counts(normalize=True)
-    return (base,)
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    IsoForest
+    """)
+    return
 
 
 @app.cell
@@ -272,50 +322,70 @@ def _(Z, pd):
 
 
 @app.cell
-def _(IsolationForest, Z, pd):
+def _(IsolationForest, Z, mo, pd):
     # final scores?
-    _raw = IsolationForest(n_estimators=1000, max_samples=256, random_state=0, n_jobs=-1).fit(Z).score_samples(Z)
-    iso_score = pd.Series(-_raw, index=Z.index)
+    with mo.persistent_cache(name="iso_scores"):
+        _raw = IsolationForest(n_estimators=1000, max_samples=256, random_state=0, n_jobs=-1).fit(Z).score_samples(Z)
+        iso_score = pd.Series(-_raw, index=Z.index)       # higher = more anomalous
     risk_0_100 = (iso_score.rank(pct=True) * 100).round(1)
+    risk_0_100.describe()
     return (iso_score,)
 
 
-@app.cell
-def _(Z, np, pd, plt):
-    # DBSCAN check
-    from sklearn.neighbors import NearestNeighbors
-    from sklearn.cluster import DBSCAN
-
-    _D = Z.sample(200_000, random_state=2)
-    _k = 8 # min_samples = 2 x number of features
-    _dist, _ = NearestNeighbors(n_neighbors=_k).fit(_D).kneighbors(_D)
-    kdist = pd.Series(_dist[:, -1], index=_D.index) # distance to k-th neighbor (includes self)
-
-    _fig, _ax = plt.subplots(figsize=(7, 4))
-    _ax.plot(np.sort(kdist.values))
-    _ax.set(xlabel="Rows sorted by k-distance", ylabel=f"Distance to neighbor {_k}",
-            title="k-distance plot for choosing eps")
-    _fig
-    return DBSCAN, kdist
-
-
-@app.cell
-def _(DBSCAN, kdist):
-    eps = kdist.quantile(0.99) # or read the elbow off the plot
-    labels = DBSCAN(eps=eps, min_samples=_k).fit_predict(_D)
-    (labels == -1).mean() # share of rows labeled noise (anomalies)
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    DBSCAN
+    """)
     return
 
 
 @app.cell
-def _(base, iso_score, kdist, pd, topk_overlap):
-    # compare the models :)
-    _cmp = pd.DataFrame({"base": base.loc[_D.index, "base_score"],
-                         "iso": iso_score.loc[_D.index], "kdist": kdist})
-    _cmp.corr(method="spearman"), {
-        "base vs iso": topk_overlap(_cmp.base, _cmp.iso),
-        "iso vs kdist": topk_overlap(_cmp.iso, _cmp.kdist),
-        "base vs kdist": topk_overlap(_cmp.base, _cmp.kdist)}
+def _(Z, np, pd, plt):
+    from sklearn.neighbors import NearestNeighbors
+    from sklearn.cluster import DBSCAN
+
+    D_sample = Z.sample(50_000, random_state=2) # DBSCAN memory grows roughly with n^2 in dense areas
+    k_nn = 8 # min_samples = 2 x number of features
+    _dist, _ = NearestNeighbors(n_neighbors=k_nn).fit(D_sample).kneighbors(D_sample)
+    kdist = pd.Series(_dist[:, -1], index=D_sample.index)
+
+    _fig, _ax = plt.subplots(figsize=(7, 4))
+    _ax.plot(np.sort(kdist.values))
+    _ax.set(xlabel="Rows sorted by k-distance", ylabel=f"Distance to neighbor {k_nn}",
+            title="k-distance plot for choosing eps (50k sample)")
+    _fig
+    return DBSCAN, D_sample, k_nn, kdist
+
+
+@app.cell
+def _(DBSCAN, D_sample, k_nn, kdist, np, pd):
+    eps = kdist.quantile(0.99)
+    _u, _inv, _cnt = np.unique(D_sample.to_numpy(), axis=0, return_inverse=True, return_counts=True)
+    _lab = DBSCAN(eps=eps, min_samples=k_nn, algorithm="ball_tree").fit_predict(_u, sample_weight=_cnt)
+    dbscan_noise = pd.Series(_lab[_inv.ravel()] == -1, index=D_sample.index)
+    {"eps": round(float(eps), 3), "unique points": len(_u), "noise share": dbscan_noise.mean()}
+    return (dbscan_noise,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Comparisons
+    """)
+    return
+
+
+@app.cell
+def _(D_sample, base, dbscan_noise, iso_score, kdist, pd, topk_overlap):
+    _cmp = pd.DataFrame({"base": base.loc[D_sample.index, "base_score"],
+                         "iso": iso_score.loc[D_sample.index], "kdist": kdist})
+    _iso_top = _cmp.iso >= _cmp.iso.quantile(0.99)
+    _cmp.corr(method="spearman").round(3), {
+        "base vs iso (top 1%)": round(topk_overlap(_cmp.base, _cmp.iso), 3),
+        "iso vs kdist (top 1%)": round(topk_overlap(_cmp.iso, _cmp.kdist), 3),
+        "base vs kdist (top 1%)": round(topk_overlap(_cmp.base, _cmp.kdist), 3),
+        "DBSCAN noise also in iso top 1%": round(_iso_top[dbscan_noise].mean(), 3)}
     return
 
 
