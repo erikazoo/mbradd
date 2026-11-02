@@ -1,0 +1,21 @@
+Rndrng_NPI,Rndrng_Prvdr_Last_Org_Name,HCPCS_Cd,Place_Of_Srvc,Rndrng_Prvdr_Type,Rndrng_Prvdr_Ent_Cd,neighbor_distance,Tot_Benes,Tot_Bene_Day_Srvcs,Tot_Srvcs,Avg_Sbmtd_Chrg,Avg_Mdcr_Alowd_Amt,Avg_Mdcr_Stdzd_Amt,cluster
+1508197039,Freeman Surgical Center Llc,45385,F,Ambulatory Surgical Center,O,9.60211670734894,65,66,66.0,3834.859697,277.76969697,259.68893939,-1
+1972773448,Claremore Indian Hospital,45385,F,Ambulatory Surgical Center,O,7.2585907776424925,13,15,15.0,626.65,616.62266667,479.52266667,-1
+1861497380,Northeast Nebraska Surgery Center Llc,45385,F,Ambulatory Surgical Center,O,6.851286230866527,330,337,337.0,1431.8026706,330.59682493,292.02053412,-1
+1447254172,Surgicenter Of Baltimore,45385,F,Ambulatory Surgical Center,O,5.932751757876995,118,118,118.0,3387.42,348.67728814,298.78720339,-1
+1467783688,Premier Surgical Center Llc,45385,F,Ambulatory Surgical Center,O,5.773650499318831,72,72,72.0,1737.4291667,347.14986111,299.59916667,-1
+1386782787,Decatur Surgery Center Lp,45385,F,Ambulatory Surgical Center,O,3.9707480495960885,237,240,240.0,3714.0,361.98191667,345.96541667,-1
+1942483433,"Premier Physicians Centers, Inc",45385,F,Ambulatory Surgical Center,O,3.923254354094027,32,33,33.0,2000.0,397.22666667,362.6369697,-1
+1679658710,"Stadium Campus Ambulatory Surgical Center, Llc",45385,F,Ambulatory Surgical Center,O,3.676942042604157,21,23,23.0,1200.0,629.55782609,438.2173913,-1
+1063459451,Carroll County Ambulatory Surgical Center,45385,F,Ambulatory Surgical Center,O,3.639022567249738,11,12,12.0,15000.0,595.965,479.87416667,-1
+1841342789,Surgery Center Jv,45385,F,Ambulatory Surgical Center,O,3.4986189654290785,84,84,84.0,1400.0,412.78345238,358.72416667,-1
+1205804697,Goldsboro Endoscopy Center Inc,45385,F,Ambulatory Surgical Center,O,3.4704644139770404,108,117,117.0,698.54700855,565.25307692,439.55350427,-1
+1538389812,"Ironbound Endo Surgical Center, Inc.",45385,F,Ambulatory Surgical Center,O,3.2403359535038048,11,12,12.0,3833.3333333,640.65,499.86666667,-1
+1093264368,"Kern Medical Surgery Center, Llc",45385,F,Ambulatory Surgical Center,O,3.0710545725602008,35,35,35.0,2182.1657143,535.79857143,367.37428571,-1
+1902853195,New Smyrna Beach Ambulatory Care Center Inc,45385,F,Ambulatory Surgical Center,O,3.062737437821372,90,96,96.0,1000.0,488.85302083,431.44947917,-1
+1508986621,Ashland Surgery Center,45385,F,Ambulatory Surgical Center,O,2.898388714323274,28,28,28.0,1400.0,493.0575,373.80035714,-1
+1134262868,North Shore Same Day Surgery Llc,45385,F,Ambulatory Surgical Center,O,2.89153157035296,12,13,13.0,5347.6153846,614.34615385,507.56230769,-1
+1962513788,Surgery Center Of Decatur Lp,45385,F,Ambulatory Surgical Center,O,2.6973746133698118,42,42,42.0,3376.0,401.84142857,374.78619048,-1
+1083670970,Glenwood Surgical Center L P,45385,F,Ambulatory Surgical Center,O,2.58159093721038,50,54,54.0,5936.0,666.81814815,499.46481481,-1
+1932819554,Southeastern Endoscopy Center Llc,45385,F,Ambulatory Surgical Center,O,2.507801804832097,13,14,14.0,750.0,498.72428571,467.01428571,-1
+1649752650,"Pioneer Endoscopy & Surgery Center, L.L.C.",45385,F,Ambulatory Surgical Center,O,2.4753113474652086,36,39,39.0,1800.0,563.89435897,476.93025641,-1

@@ -1,0 +1,21 @@
+Rndrng_NPI,Rndrng_Prvdr_Last_Org_Name,HCPCS_Cd,Place_Of_Srvc,Rndrng_Prvdr_Type,neighbor_distance,Tot_Benes,Tot_Bene_Day_Srvcs,Tot_Srvcs,Avg_Sbmtd_Chrg,Avg_Mdcr_Alowd_Amt,Avg_Mdcr_Stdzd_Amt,cluster
+1689216152,Baptist Health Surgery Center Llc,45378,F,Ambulatory Surgical Center,3.56202702571948,12,12,12.0,3200.0,366.9325,274.4575,-1
+1801811443,Physicians Of Winter Haven Llc,45378,F,Ambulatory Surgical Center,1.8842305745525953,33,33,33.0,3855.69,349.46848485,298.38666667,-1
+1174063788,"Embassy Surgery Center, Llc",45378,F,Ambulatory Surgical Center,1.8392982005367682,146,146,146.0,9556.4589041,471.64431507,318.87143836,-1
+1780727636,"Union Surgery Center, Inc",45378,F,Ambulatory Surgical Center,1.780197544058083,15,15,15.0,2000.0,407.32333333,297.32933333,-1
+1659517019,"Surgery Center Of Pembroke Pines, Llc",45378,F,Ambulatory Surgical Center,1.7409564131474644,16,16,16.0,7862.61,431.66125,304.4975,-1
+1154323988,Central Virginia Surgi-Center Lp,45378,F,Ambulatory Surgical Center,1.635361430741872,36,37,37.0,3177.1756757,445.82162162,300.31297297,-1
+1295494359,Atlantic Sc Llc,45378,F,Ambulatory Surgical Center,1.4990142921574614,286,289,289.0,6962.6297578,541.68930796,386.57688581,-1
+1124098512,Wesmark Ambulatory Surgery Center,45378,F,Ambulatory Surgical Center,1.3951225827326486,102,102,102.0,5800.0,409.74539216,391.02264706,-1
+1720262405,Baton Rouge La Endoscopy Asc Llc,45378,F,Ambulatory Surgical Center,1.2992218625760925,137,138,138.0,1265.0,359.135,319.01884058,-1
+1407039589,"Dhhs, Phs, Naihs, Shiprock Hospital",45378,F,Ambulatory Surgical Center,1.1903151696102061,11,12,12.0,263.25,232.59833333,323.11166667,-1
+1871536037,"Ssm St. Joseph Endoscopy Center, Llc",45378,F,Ambulatory Surgical Center,1.1566367994972055,14,14,14.0,3100.0,405.63928571,304.735,-1
+1174873780,"Yorkville Endoscopy, Llc",45378,F,Ambulatory Surgical Center,1.1501068459625878,110,110,111.0,2128.3783784,481.79045045,319.6636036,-1
+1164414447,East Valley Endoscopy Llc,45378,F,Ambulatory Surgical Center,1.127533645484963,469,471,471.0,1330.0,455.42014862,343.22825902,-1
+1164012142,"Comprehensive Digestive Surgicenter, Llc",45378,F,Ambulatory Surgical Center,1.1199675209896072,24,24,24.0,20879.791667,472.505,375.77583333,-1
+1710985445,"Hershey Endoscopy Center, Llc",45378,F,Ambulatory Surgical Center,1.080361007458962,14,14,14.0,1400.0,455.73428571,310.94142857,-1
+1295798346,"Sunrise Flamingo Surgery Center, Llc",45378,F,Ambulatory Surgical Center,1.0747420119522924,18,18,18.0,22174.506667,498.46222222,372.95722222,-1
+1093922189,Charles River Endoscopy Llc,45378,F,Ambulatory Surgical Center,1.0655427392780772,80,80,80.0,1000.0,477.229,394.886,-1
+1063999662,"Southern Kentucky Surgicenter, Llc",45378,F,Ambulatory Surgical Center,1.0577684169561836,11,11,11.0,13765.363636,419.86090909,339.77636364,-1
+1659338382,"Sterling Surgical Center, Llc",45378,F,Ambulatory Surgical Center,1.027064342135944,26,26,26.0,1500.0,418.54961538,395.77884615,0
+1881645810,Anmed Enterprises Inc - Upstate Endoscopy Center Inc Llc,45378,F,Ambulatory Surgical Center,1.0157431255545732,184,184,184.0,1115.0,436.79233696,387.69076087,-1

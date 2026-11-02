@@ -1,0 +1,21 @@
+Rndrng_NPI,Rndrng_Prvdr_Last_Org_Name,HCPCS_Cd,Place_Of_Srvc,Rndrng_Prvdr_Type,Rndrng_Prvdr_Ent_Cd,Rndrng_Prvdr_State_Abrvtn,neighbor_distance,Tot_Benes,Tot_Bene_Day_Srvcs,Tot_Srvcs,Avg_Sbmtd_Chrg,Avg_Mdcr_Alowd_Amt,Avg_Mdcr_Stdzd_Amt,cluster
+1477893865,Naples Apothecary Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.8737675465447404,31,31,31.0,413.3,81.00516129,81.00516129,0
+1730213448,Washingtonville Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.8280076732814091,68,68,68.0,418.67,81.82,81.82,0
+1083248694,Madison Apothecary Inc.,90653,O,Mass Immunizer Roster Biller,O,NY,0.7897621038753778,230,230,230.0,350.75147826,81.82,81.82,0
+1689894909,"Grand Island Pharmacy, Inc.",90653,O,Mass Immunizer Roster Biller,O,NY,0.7547653843768587,14,14,14.0,354.01428571,81.82,81.82,0
+1437609450,"Attica Pharmacy, Inc.",90653,O,Mass Immunizer Roster Biller,O,NY,0.7542878293526621,52,52,52.0,401.41711538,81.82,81.82,0
+1689978645,Jojan Pharma Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.6244440790386449,12,12,12.0,286.64166667,81.82,81.82,0
+1700114790,Church Ave Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.5208376722422133,111,111,111.0,271.32018018,81.096486486,81.096486486,0
+1265759815,Progression Llc,90653,O,Mass Immunizer Roster Biller,O,NY,0.4900158446715075,1114,1114,1114.0,83.49,81.82,81.82,0
+1811292766,Herbst Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.4543633049256508,23,23,23.0,238.91913043,81.82,81.82,0
+1518244045,Carman Ave Drugs Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.43690231551085207,1034,1034,1034.0,83.53245648,81.82,81.82,0
+1871895300,"Valley Pharmacy And Medical Supplies, Inc.",90653,O,Mass Immunizer Roster Biller,O,NY,0.40495225627902315,67,67,67.0,56.211044776,54.253134328,54.253134328,0
+1578602355,Stovers Pharmacies Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.3570330962020019,671,671,671.0,148.81044709,81.82,81.82,0
+1467482489,Parul Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.32757823713416284,11,11,11.0,154.13818182,81.82,81.82,0
+1013943737,Greatneck Chemists Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.3272275765487544,378,378,378.0,147.47933862,81.82,81.82,0
+1124122189,N & N Village Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.2945082861564622,35,35,35.0,190.81685714,81.82,81.82,0
+1760581029,Genovese Drug Stores Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.28457459696807685,835,835,835.0,83.49,81.82,81.82,0
+1871703199,"Symart Drug Co., Inc.",90653,O,Mass Immunizer Roster Biller,O,NY,0.2834814957015936,400,400,400.0,137.65,81.82,81.82,0
+1285745349,County Of Greene,90653,O,Mass Immunizer Roster Biller,O,NY,0.2793934976914052,33,33,33.0,62.94,61.68,61.68,0
+1215018213,"Adirondack Pharmacy, Inc.",90653,O,Mass Immunizer Roster Biller,O,NY,0.2762059863749661,90,90,90.0,170.89188889,81.82,81.82,0
+1538153200,Jefferson Valley Pharmacy Inc,90653,O,Mass Immunizer Roster Biller,O,NY,0.24581896934269076,423,423,423.0,129.55661939,81.82,81.82,0
