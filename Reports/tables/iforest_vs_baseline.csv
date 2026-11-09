@@ -1,0 +1,5 @@
+,Isolation Forest vs z-score baseline
+spearman,0.909
+top1% overlap,0.594
+top5% overlap,0.625
+top10% overlap,0.649

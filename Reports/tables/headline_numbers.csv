@@ -1,0 +1,9 @@
+,value
+rows loaded,"9,781,161"
+rows modeled,"9,535,897"
+IF vs baseline: Spearman,0.909
+IF vs baseline: top 1% overlap,0.594
+seed stability: mean top 1% overlap,0.834
+seed stability: worst top 1% overlap,0.77
+settings/features: lowest top 1% overlap,0.543
+min_size: lowest top 1% overlap,0.892

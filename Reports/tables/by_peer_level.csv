@@ -1,0 +1,4 @@
+peer_level,rows,share of rows %,share of top 1% %,spearman local vs global,top1% overlap
+1,9250844,97.011,89.898,0.988,0.889
+2,269341,2.824,8.69,0.971,0.748
+3,15712,0.165,1.411,0.86,0.42

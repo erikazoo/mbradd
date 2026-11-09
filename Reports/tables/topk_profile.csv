@@ -1,0 +1,5 @@
+,log_pay_rz,log_benes_rz,srvcs_per_bene_rz,markup_rz
+top 1%,3.35,1.02,2.07,1.54
+top 5%,1.27,1.13,1.67,1.17
+top 10%,1.12,1.13,1.42,1.18
+rest (<90),0.59,0.65,0.45,0.65

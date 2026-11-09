@@ -1,0 +1,7 @@
+setting,spearman,top1%,top5%,top10%
+max_samples=128,0.983,0.75,0.879,0.883
+max_samples=512,0.984,0.865,0.878,0.911
+drop log_pay_rz,0.873,0.543,0.642,0.725
+drop log_benes_rz,0.853,0.853,0.8,0.77
+drop srvcs_per_bene_rz,0.826,0.65,0.656,0.706
+drop markup_rz,0.834,0.709,0.765,0.774
